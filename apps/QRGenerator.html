@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR Generator | AppVault</title>
+
+  <!-- Bootstrap -->
+  <link href="../assets/css/bootstrap.css" rel="stylesheet" />
+
+  <!-- FontAwesome -->
+  <link href="../assets/css/font-awesome.css" rel="stylesheet" />
+
+  <!-- Custom Styles -->
+  <link href="../assets/css/custom-styles.css" rel="stylesheet" />
+
+  <!-- QRCode Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- ✅ Light Tool Styling -->
+  <style>
+    body {
+      background: #f8fafc;
+    }
+
+    .tool-card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    h1 {
+      color: #2563eb;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    #qrBox {
+      padding: 25px;
+      border-radius: 18px;
+      background: #f1f5f9;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .history-item {
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      margin-bottom: 8px;
+      transition: 0.2s;
+      text-align: left;
+    }
+
+    .history-item:hover {
+      background: #e0f2fe;
+      border-color: #38bdf8;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrapper">
+
+    <!-- ✅ TOP NAVBAR -->
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">AppVault</a>
+      </div>
+
+      <ul class="nav navbar-top-links navbar-right">
+        <li>
+          <a href="../index.html" title="Home">
+            <i class="fa fa-home fa-fw"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- ✅ SIDEBAR -->
+    <nav class="navbar-default navbar-side" role="navigation">
+      <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+          <li>
+            <a href="../index.html">
+              <i class="fa fa-dashboard"></i> Productivity & Tools
+            </a>
+          </li>
+
+          <li>
+            <a href="../creative.html">
+              <i class="fa fa-desktop"></i> Creative & Design
+            </a>
+          </li>
+
+          <li>
+            <a href="../music.html">
+              <i class="fa fa-bar-chart-o"></i> 🎵 Music & Audio
+            </a>
+          </li>
+
+          <li>
+            <a href="../games.html">
+              <i class="fa fa-qrcode"></i> 🕹️ Games & Fun
+            </a>
+          </li>
+
+          <li>
+            <a href="../cyber.html">
+              <i class="fa fa-table"></i> 🌐 Cyber
+            </a>
+          </li>
+
+          <li>
+            <a href="../learning.html">
+              <i class="fa fa-edit"></i> 📚 Learning & Study
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ✅ PAGE CONTENT -->
+    <div id="page-wrapper">
+      <div id="page-inner">
+
+        <!-- Header with Back Button -->
+        <div class="row align-items-center mb-3">
+          <div class="col-md-12 d-flex align-items-center justify-content-between flex-wrap">
+            <h1 class="page-header mb-0">
+              QR Code Generator
+              <small class="text-muted d-block">Create QR codes instantly inside AppVault</small>
+            </h1>
+            <a href="../index.html" class="btn btn-outline-primary ms-3 mt-2 mt-md-0">
+              ← Back to Productivity Tools
+            </a>
+          </div>
+        </div>
+
+        <!-- ✅ QR TOOL CARD -->
+        <div class="tool-card">
+
+          <h1>QR Code Studio</h1>
+          <p class="text-muted">
+            Auto-generate QR codes, customize colors, and keep history.
+          </p>
+
+          <!-- Input -->
+          <input id="inputText" type="text"
+            class="form-control input-lg text-center mb-3"
+            placeholder="Type text or URL..." />
+
+          <!-- Color Picker (Above QR) -->
+          <div class="mb-3 d-flex justify-content-center align-items-center gap-3">
+            <label><strong>QR Color:</strong></label>
+            <input type="color" id="qrColor" value="#000000">
+          </div>
+
+          <!-- QR Output -->
+          <div id="qrBox"></div>
+
+          <!-- Download -->
+          <br>
+          <a id="downloadLink" class="btn btn-primary btn-block mt-3" download="qrcode.png">
+            Download QR Code <i class="fa fa-download"></i>
+          </a>
+
+          <!-- History -->
+          <hr>
+          <h4 class="text-left"><strong>History</strong></h4>
+          <div id="historyList"></div>
+
+        </div>
+
+        <footer>
+          <p style="margin-top:40px;">AppVault Tools © 2026</p>
+        </footer>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="../assets/js/jquery-1.10.2.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <script src="../assets/js/jquery.metisMenu.js"></script>
+  <script src="../assets/js/custom-scripts.js"></script>
+
+  <!-- QR Generator Logic -->
+  <script>
+    const inputText = document.getElementById("inputText");
+    const qrBox = document.getElementById("qrBox");
+    const qrColor = document.getElementById("qrColor");
+    const downloadLink = document.getElementById("downloadLink");
+    const historyList = document.getElementById("historyList");
+
+    let history = [];
+
+    function generateQR(text) {
+      if (!text.trim()) return;
+
+      qrBox.innerHTML = "";
+
+      new QRCode(qrBox, {
+        text: text,
+        width: 220,
+        height: 220,
+        colorDark: qrColor.value,
+        colorLight: "#f1f5f9",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+
+      saveHistory(text);
+
+      setTimeout(() => {
+        let canvas = qrBox.querySelector("canvas");
+        downloadLink.href = canvas.toDataURL();
+      }, 300);
+    }
+
+    // Auto-generate while typing
+    inputText.addEventListener("input", () => {
+      generateQR(inputText.value);
+    });
+
+    // Change color live
+    qrColor.addEventListener("input", () => {
+      generateQR(inputText.value);
+    });
+
+    // Save history
+    function saveHistory(text) {
+      if (history.includes(text)) return;
+
+      history.unshift(text);
+      if (history.length > 5) history.pop();
+
+      renderHistory();
+    }
+
+    // Render history
+    function renderHistory() {
+      historyList.innerHTML = "";
+
+      history.forEach(item => {
+        let div = document.createElement("div");
+        div.className = "history-item";
+        div.innerHTML = `<i class="fa fa-clock-o"></i> ${item}`;
+
+        div.onclick = () => {
+          inputText.value = item;
+          generateQR(item);
+        };
+
+        historyList.appendChild(div);
+      });
+    }
+
+    // Default QR
+    generateQR("https://appvault.tools");
+  </script>
+
+</body>
+</html>
