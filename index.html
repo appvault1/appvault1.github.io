@@ -1,0 +1,269 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productivity Tools</title>
+
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet" />
+
+    <!-- Google Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
+
+    <!-- ✅ App Store Style Custom CSS -->
+    <style>
+        .tool-card {
+            background: white;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.08);
+            transition: 0.2s ease;
+            text-align: center;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0px 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .tool-icon img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .tool-card h3 {
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+
+        .tool-card p {
+            color: #666;
+            font-size: 14px;
+            min-height: 45px;
+        }
+
+        #searchInput,
+        #filterSelect {
+            border-radius: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+
+        <!-- ✅ TOP NAVBAR -->
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Matrix</a>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <a href="information.html" title="Information">
+                        <i class="fa fa-question-circle fa-fw"></i>
+                    </a>
+                </li>
+            </ul>
+            
+        </nav>
+
+        <!-- ✅ SIDEBAR -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a class="active-menu" href="index.html">
+                            <i class="fa fa-dashboard"></i> Productivity & Tools
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="creative.html">
+                            <i class="fa fa-desktop"></i> Creative & Design
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="music.html">
+                            <i class="fa fa-bar-chart-o"></i> 🎵 Music & Audio
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="games.html">
+                            <i class="fa fa-qrcode"></i> 🕹️ Games & Fun
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="cyber.html">
+                            <i class="fa fa-table"></i> 🌐 Cyber
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="learning.html">
+                            <i class="fa fa-edit"></i> 📚 Learning & Study
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+
+        <!-- ✅ PAGE CONTENT -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+
+                <!-- ✅ PAGE HEADER -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Productivity & Tools
+                            <small>Simple apps to boost your workflow</small>
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- ✅ SEARCH + FILTER BAR -->
+                <div class="row" style="margin-bottom:20px;">
+
+                    <!-- Search -->
+                    <div class="col-md-8">
+                        <input type="text" id="searchInput" class="form-control input-lg"
+                            placeholder="Search productivity tools...">
+                    </div>
+
+                    <!-- Filter -->
+                    <div class="col-md-4">
+                        <select id="filterSelect" class="form-control input-lg">
+                            <option value="all">All Tools</option>
+                            <option value="timer">Timers</option>
+                            <option value="tasks">Task Tools</option>
+                            <option value="notes">Notes</option>
+                            <option value="calculators">Calculators</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <!-- ✅ TOOL GRID -->
+                <div class="row" id="toolGrid">
+                    <!-- Auto Generated -->
+                </div>
+
+                <footer>
+                    <p>All rights reserved.</p>
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ JS Scripts -->
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="assets/js/custom-scripts.js"></script>
+
+    <!-- ✅ TOOL DATABASE + AUTO LOADER -->
+    <script>
+        const tools = [
+            {
+                name: "Pomodoro Timer",
+                desc: "A focus timer to boost deep work sessions.",
+                img: "assets/images/pomodoro.png",
+                category: "timer",
+                link: "apps/pomodoro.html"
+            },
+            {
+                name: "To-Do List",
+                desc: "Simple checklist to organize your day.",
+                img: "assets/images/todo.png",
+                category: "tasks",
+                link: "apps/todo.html"
+            },
+            {
+                name: "Quick Notes",
+                desc: "Write fast notes in a clean workspace.",
+                img: "assets/images/notes.png",
+                category: "notes",
+                link: "apps/notes.html"
+            },
+            {
+                name: "Calculator Pro",
+                desc: "Minimal calculator for quick math.",
+                img: "assets/images/calculator.png",
+                category: "calculators",
+                link: "apps/calculator.html"
+            }
+        ];
+
+        function renderTools() {
+            const grid = document.getElementById("toolGrid");
+            const search = document.getElementById("searchInput").value.toLowerCase();
+            const filter = document.getElementById("filterSelect").value;
+
+            grid.innerHTML = "";
+
+            tools.forEach(tool => {
+                const matchesSearch =
+                    tool.name.toLowerCase().includes(search) ||
+                    tool.desc.toLowerCase().includes(search);
+
+                const matchesFilter =
+                    filter === "all" || tool.category === filter;
+
+                if (matchesSearch && matchesFilter) {
+                    grid.innerHTML += `
+                        <div class="col-md-4 col-sm-6">
+                            <div class="tool-card">
+                                <div class="tool-icon">
+                                    <img src="${tool.img}" alt="${tool.name}">
+                                </div>
+                                <h3>${tool.name}</h3>
+                                <p>${tool.desc}</p>
+                                <a href="${tool.link}" class="btn btn-primary btn-block">
+                                    Open Tool →
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+
+            if (grid.innerHTML === "") {
+                grid.innerHTML = `<p style="padding:20px;">No tools found.</p>`;
+            }
+        }
+
+        document.getElementById("searchInput").addEventListener("input", renderTools);
+        document.getElementById("filterSelect").addEventListener("change", renderTools);
+
+        renderTools();
+    </script>
+
+</body>
+
+</html>
